@@ -102,7 +102,7 @@ const CertificateForm: React.FC = () => {
               {/* ขอบใน */}
               <div className="absolute inset-4 border-2 border-yellow-300 rounded-lg" />
 
-              {/* เนื้อหาใบประกาศ */}
+              {/* เนื้อหาเกียรติบัตร */}
               <div className="relative h-full flex flex-col justify-between px-6 pt-6 pb-8 text-center">
 
                 {/* มุมซ้ายบน - เลขที่เกียรติบัตร */}
@@ -128,7 +128,7 @@ const CertificateForm: React.FC = () => {
 
                 {/* วันที่ */}
                 <div className="text-sm text-gray-600 mt-6">
-                  วันที่ออกใบประกาศ: {formattedDate}
+                  วันที่ออกเกียรติบัตร: {formattedDate}
                 </div>
               </div>
             </div>
