@@ -28,7 +28,7 @@ const CertificateForm: React.FC = () => {
     if (!certRef.current) return;
     const canvas = await html2canvas(certRef.current, { scale: 2 });
     const imgData = canvas.toDataURL('image/jpeg', 1.0);
-    const id = `${crypto.randomUUID()}_${new Date().toISOString().slice(0,10).replace(/-/g,'')}`;
+    const id = `${crypto.randomUUID()}_${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`;
     const filename = `certificate_${id}`;
 
     if (type === 'jpeg') {
@@ -81,7 +81,7 @@ const CertificateForm: React.FC = () => {
                 onClick={handleNext}
                 className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg py-3 transition"
               >
-                ไปยัง Preview
+                ถัดไป
               </button>
             </div>
           </>
@@ -92,32 +92,43 @@ const CertificateForm: React.FC = () => {
               className="mb-3 text-sm text-indigo-500 hover:underline"
             >&larr; แก้ไขข้อมูล</button>
 
-            <div className="mx-auto w-full max-w-sm">
-              <div
-                ref={certRef}
-                className="relative bg-white rounded-xl overflow-hidden shadow-xl"
-                style={{ aspectRatio: '210 / 297' }}
-              >
-                {/* ขอบนอก */}
-                <div className="absolute inset-0 border-8 border-yellow-400 rounded-xl" />
-                {/* ขอบใน */}
-                <div className="absolute inset-4 border-2 border-yellow-300 rounded-lg" />
+            <div
+              ref={certRef}
+              className="relative bg-white rounded-xl overflow-hidden shadow-xl"
+              style={{ aspectRatio: '210 / 297' }}
+            >
+              {/* ขอบนอก */}
+              <div className="absolute inset-0 border-8 border-yellow-400 rounded-xl" />
+              {/* ขอบใน */}
+              <div className="absolute inset-4 border-2 border-yellow-300 rounded-lg" />
 
-                <div className="relative h-full flex flex-col items-center px-6 pt-8 pb-6 text-center">
-                  {/* หัวข้อ */}
-                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 uppercase mb-2">Certificate of Achievement</h1>
-                  <hr className="w-2/3 border-gray-300 mb-4" />
+              {/* เนื้อหาใบประกาศ */}
+              <div className="relative h-full flex flex-col justify-between px-6 pt-6 pb-8 text-center">
 
-                  {/* เนื้อหาขอบคุณ */}
-                  <p className="text-gray-700 mb-4 text-lg">
-                    ขอขอบคุณ {prefix} {firstName} {lastName}<br />
+                {/* มุมซ้ายบน - เลขที่เกียรติบัตร */}
+                <div className="absolute top-6 left-6 text-[8px] text-gray-500 font-mono">
+                  เลขที่เกียรติบัตร: {crypto.randomUUID()}
+                </div>
+
+                {/* หัวข้อ */}
+                <div>
+                  <h1 className="text-2xl mt-8 md:text-3xl lg:text-4xl font-bold text-gray-800 uppercase mb-2">
+                    Certificate of Achievement
+                  </h1>
+                </div>
+
+                {/* เนื้อหาแบบอยู่กลางกระดาษ */}
+                <div className="flex-grow flex items-center justify-center">
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    ขอขอบคุณ<br />
+                    <span className="text-xl font-semibold">{prefix} {firstName} {lastName}</span><br />
                     ที่มาร่วมทดสอบระบบของเรา
                   </p>
+                </div>
 
-                  {/* วันที่ */}
-                  <div className="mt-auto text-sm text-gray-600">
-                    วันที่ออกใบประกาศ: {formattedDate}
-                  </div>
+                {/* วันที่ */}
+                <div className="text-sm text-gray-600 mt-6">
+                  วันที่ออกใบประกาศ: {formattedDate}
                 </div>
               </div>
             </div>
